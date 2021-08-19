@@ -1,11 +1,22 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function Home(initialData) {
+  const [formInputs, setFormInputs] = useState({})
   // useEffect(() => {
   //   console.log(initialData);
   // })
+
+  const handleInputs = (e) => {
+    let { name, value } = e.target;
+    setFormInputs({...formInputs, [name]: value})
+  }
+
+  const search = (e) => {
+    e.preventDefault();
+    console.log(formInputs.searchTerm);
+  }
   return (
     <div className='container'>
       <Head>
@@ -16,11 +27,12 @@ export default function Home(initialData) {
       
       <h1>Giphy Search App</h1>
 
-      <form>
-        <input onChange={() => console.log('happens')} type="text"/>
+      <form onSubmit={search}>
+        <input name="searchTerm" onChange={handleInputs} type="text"/>
+        <button>Search</button>
       </form>
 
-      <div class="giphy-search-results-grid">
+      <div className="giphy-search-results-grid">
         {initialData.catGiphys.data.map((each, index) => {
           return (
             <div key="index">
@@ -39,7 +51,7 @@ export default function Home(initialData) {
 
 export async function getStaticProps() {
   let catGiphys = await fetch(
-    "https://api.giphy.com/v1/gifs/search?q=funny&api_key=z7VPExeiLKstC33626F2lZMD2nceySKs&limit=10"
+    "https://api.giphy.com/v1/gifs/search?q=pets&api_key=z7VPExeiLKstC33626F2lZMD2nceySKs&limit=10"
   );
   catGiphys = await catGiphys.json();
   return {
