@@ -54,3 +54,9 @@ input:focus{
     background-color: #EFEFEF;
     margin-top: 40px;
 }
+
+.logo-container{
+    max-width: 500px;
+    margin: auto;
+    padding: 40px 0px;
+}

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Footer from '../components/Footer';
-
+import Image from 'next/image';
 
 export default function Home(initialData) {
   const [formInputs, setFormInputs] = useState()
@@ -39,7 +39,9 @@ export default function Home(initialData) {
         <link rel="stylesheet" href="/styles.css" />
       </Head>
       
-      <h1>Giphy Search App</h1>
+        <div className="logo-container">
+          <Image src="/logo.png" alt="logo" height={400} width={600}/>
+      </div>
 
       <form onSubmit={search}>
         <input name="searchTerm" onChange={handleInputs} type="text"/>
