@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Footer from '../components/Footer';
 
 
 export default function Home(initialData) {
@@ -26,6 +28,7 @@ export default function Home(initialData) {
     setSearchTerm(formInputs.searchTerm);
   }
   return (
+    <>
     <div className='container'>
       <Head>
         <title>Create Next App</title>
@@ -52,8 +55,9 @@ export default function Home(initialData) {
           )
         })}
       </div>
-    </div>
-  
+      </div>
+      <Footer />
+      </>
   )
 }
 
